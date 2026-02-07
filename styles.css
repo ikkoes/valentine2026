@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* {
+  font-family: "Lato", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; /* Include padding/border in element's total width/height */
+}
+
+/* Set static height that adapts to screen */
+body.static-height {
+  height: 100vh;
+  width: 100vw; /* Exactly match viewport width */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0; /* Ensure no extra margins */
+  padding: 0; /* Ensure no extra padding */
+}
+
+.content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%; /* Ensure wrapper takes full width */
+  max-width: 100vw; /* Prevent overflow */
+}
+
+img {
+  max-height: 300px;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  max-width: 100%; /* Prevent image overflow */
+  height: auto;
+}
+
+.about-me-container {
+  align-content: center;
+  max-width: 900px;
+  text-align: center;
+  padding: 50px;
+  align-items: center;
+  width: 100%; /* Ensure full width usage */
+  box-sizing: border-box;
+  margin: 0 auto; /* Center the container */
+}
+
+.text--green{
+  color: #9dc183; 
+}
+
+.body {
+  text-align: center;
+  width: 500px;
+  padding-top: 50px;
+  align-items: center;
+  align-content: center;
+  max-width: 100%; /* Prevent overflow */
+}
+
+h2 {
+  padding-top: 20px;
+  font-size: 25px;
+}
+
+h3 {
+  padding-bottom: 50px;
+}
+
+p{
+  display: ;
+  align-self: center;
+  max-width: 100%; /* Prevent text overflow */
+}
+
+.body1 {
+  padding: 100px;
+  max-width: 500px;
+}
+
+p2 {
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+#reveal-button:active + #rose + #text {
+  display: block;
+  display: contents;
+}
+
+button {
+  align-self: center;
+}
+
+.yes, .no {
+  font-family: "Lato", sans-serif !important;
+  font-size: 18px !important;
+  padding: 12px 28px !important;
+  margin: 8px !important;
+  border: none !important;
+  border-radius: 50px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+  position: relative;
+  z-index: 10;
+  max-width: 100%; /* Prevent button overflow */
+}
+
+.yes {
+  background: linear-gradient(120deg, #9dc183, #7a9c59) !important;
+  color: white !important;
+  font-weight: 700;
+}
+
+.no {
+  background: linear-gradient(120deg, #e74c3c, #c0392b) !important;
+  color: white !important;
+  font-weight: 700;
+}
+
+/* Prevent layout shift during scaling */
+.container .my-4 {
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Button container */
+.button-container {
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 15px;
+  margin: 25px 0;
+  padding: 15px 0;
+  overflow: visible;
+  transition: min-height 0.4s ease;
+  width: 100%; /* Ensure full width */
+  max-width: 100%; /* Prevent overflow */
+}
+
+.yes {
+  background: linear-gradient(120deg, #9dc183, #7a9c59) !important;
+  color: white !important;
+  font-weight: 700;
+  flex-shrink: 0;
+  z-index: 5;
+  box-shadow: 0 6px 15px rgba(157, 193, 131, 0.4) !important;
+  max-width: 100%; /* Prevent overflow */
+}
+
+.no {
+  background: linear-gradient(120deg, #e74c3c, #c0392b) !important;
+  color: white !important;
+  font-weight: 700;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.35) !important;
+  transition: transform 0.2s ease;
+  max-width: 100%; /* Prevent overflow */
+}
+
+.no:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 15px rgba(231, 76, 60, 0.5) !important;
+}
+
+/* Animations */
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25% { transform: translateX(-8px) rotate(-5deg); }
+  75% { transform: translateX(8px) rotate(5deg); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 100, 100, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(255, 100, 100, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 100, 100, 0); }
+}
+
+/* Fixed button positioning */
+.no.escape-mode {
+  position: fixed !important;
+  animation: pulse 1.5s infinite, shake 0.5s;
+  z-index: 1000 !important;
+  left: 50% !important;
+  top: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+  inset: auto !important;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .no.escape-mode {
+    position: fixed !important;
+    touch-action: manipulation;
+  }
+}
