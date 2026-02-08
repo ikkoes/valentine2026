@@ -55,8 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. UPDATE "YES" TEXT FOR FUN
     if (scale > 1.5 && yesBtn.textContent === "Yes") yesBtn.textContent = "Are you sure??";
     if (scale > 2.5) yesBtn.textContent = "PLEASE";
-    if (scale > 3.5) yesBtn.textContent = "THINK ABOUT IT";
-
+    if (scale > 3.5) {
+        yesBtn.innerHTML = '<img src="images/Mocha Bear.jfif" alt="Bear" style="width:100%; height:100%; object-fit:contain;">';
+        yesBtn.style.padding = '0'; // Remove padding to fit image properly
+    }
     // 4. MAKE "NO" ESCAPE TO RANDOM SCREEN POSITION
     if (!hasEscaped) {
       // Add escape mode class first
