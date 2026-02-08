@@ -1,11 +1,12 @@
-// Updated JavaScript with forced position updates
+// Updated JavaScript with paragraph display functionality (without celebration message)
 document.addEventListener('DOMContentLoaded', () => {
   const yesBtn = document.querySelector('.yes');
   const noBtn = document.querySelector('.no');
   const container = document.querySelector('.button-container');
+  const paragraphElement = document.querySelector('p'); // Select the paragraph
 
-  if (!yesBtn || !noBtn || !container) {
-    console.error('Buttons not found!');
+  if (!yesBtn || !noBtn || !container || !paragraphElement) {
+    console.error('Required elements not found!');
     return;
   }
 
@@ -79,7 +80,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Separate hover handler
+  // Handle "Yes" button click
+  yesBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Show the paragraph content
+    paragraphElement.style.display = 'block';
+    paragraphElement.style.opacity = '0';
+    paragraphElement.style.transition = 'opacity 1s ease-in-out';
+    
+    // Fade in the paragraph
+    setTimeout(() => {
+      paragraphElement.style.opacity = '1';
+    }, 10);
+
+    // Add a highlight effect
+    paragraphElement.style.animation = 'highlight 2s ease-in-out';
+
+    // Celebration effect
+    yesBtn.textContent = "YAYYYY!";
+    yesBtn.style.transform = 'scale(1.5)';
+    yesBtn.style.backgroundColor = '#ff6b6b';
+    yesBtn.style.boxShadow = '0 0 30px #ff6b6b, 0 0 60px #ff6b6b';
+    
+    // Add confetti effect
+    createConfetti();
+    
+    // Disable buttons after yes click
+    yesBtn.disabled = true;
+    noBtn.disabled = true;
+  });
+
+  // Function to create confetti effect
+  function createConfetti() {
+    const colors = ['#9dc183', '#e74c3c', '#3498db', '#f1c40f', '#9b59b6'];
+    const container = document.body;
+    
+    for (let i = 0; i < 150; i++) {
+      const confetti = document.createElement('div');
+      confetti.style.position = 'fixed';
+      confetti.style.width = '10px';
+      confetti.style.height = '10px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.borderRadius = '50%';
+      confetti.style.left = `${Math.random() * 100}vw`;
+      confetti.style.top = '-10px';
+      confetti.style.zIndex = '9999';
+      confetti.style.opacity = '0.8';
+      confetti.style.pointerEvents = 'none';
+      
+      container.appendChild(confetti);
+      
+      // Animate confetti
+      const animation = confetti.animate([
+        { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
+        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+      ], {
+        duration: Math.random() * 3000 + 2000,
+        easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
+      });
+      
+      // Remove confetti after animation
+      animation.onfinish = () => confetti.remove();
+    }
+  }
+
+  // Separate hover handler for No button
   noBtn.addEventListener('mouseover', (e) => {
     if (hasEscaped && Math.random() > 0.7) {
       const { x, y } = getSafePosition();
@@ -108,3 +175,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// Add animation keyframes to CSS
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  }
+  
+  @keyframes highlight {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(157, 193, 131, 0.3); }
+    100% { background-color: transparent; }
+  }
+`;
+document.head.appendChild(style);

@@ -70,7 +70,7 @@ h3 {
 }
 
 p{
-  display: ;
+  display: none;
   align-self: center;
   max-width: 100%; /* Prevent text overflow */
 }
