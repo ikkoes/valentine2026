@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. UPDATE "YES" TEXT FOR FUN
     if (scale > 1.5 && yesBtn.textContent === "Yes") yesBtn.textContent = "Are you sure??";
-    if (scale > 1.75) yesBtn.textContent = "PLEASE";
-    if (scale > 2.5) {
+    if (scale > 2) yesBtn.textContent = "PLEASE";
+    if (scale > 3) {
         yesBtn.innerHTML = '<img src="images/Mocha Bear.jfif" alt="Bear" style="width:100%; height:100%; object-fit:contain;">';
         yesBtn.style.padding = '0'; // Remove padding to fit image properly
     }
